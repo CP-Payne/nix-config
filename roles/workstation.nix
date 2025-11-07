@@ -5,6 +5,9 @@
 
 		# Import only one desktop
 		../desktop/niri.nix
+
+		# Login Manager
+		../features/login/greetd.nix
 		
 		# System
 
@@ -41,10 +44,13 @@
 		vim
 		wget
 		tree
+		wl-clipboard
 	];
 
 
 	desktop.niri.enable = true;
+	features.login.greetd.enable = true;
+
 	features.shell.zsh.enable = true;
 	features.apps.alacritty.enable = true;
 	features.apps.browsers.firefox.enable = true;
