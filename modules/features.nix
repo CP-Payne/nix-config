@@ -7,5 +7,8 @@ in {
 
 		# Apps
 		apps.neovim.enable = mkEnableOption "Neovim editor";
+		
+		# Terminals
+		apps.alacritty.enable = mkEnableOption "Alacritty terminal";
 	};
 }

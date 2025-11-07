@@ -30,6 +30,8 @@
 	profile.desktop.niri.enable = true;
 	# Apps
 	profile.apps.neovim.enable = true;
+	# Terminals
+	profile.apps.alacritty.enable = true;
 
 	# Other NixOS stuff
 	services.xserver.enable = false; #Enable if x11
@@ -77,7 +79,6 @@ enable = true;
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
    environment.systemPackages = with pkgs; [
-     alacritty
      btop
      gedit
 wl-clipboard

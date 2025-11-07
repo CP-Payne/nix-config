@@ -10,6 +10,7 @@
 	home-manager.sharedModules = [
 		../home/profile/niri.nix
 		../home/apps/editor-neovim.nix
+		../home/apps/alacritty.nix
 	];
 	home-manager.extraSpecialArgs = { inherit vars; };
 		
