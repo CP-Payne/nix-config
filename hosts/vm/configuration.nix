@@ -7,12 +7,13 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+	./hardware-configuration.nix
 
 	../common.nix
 
 	# System Scope
 	../../modules/system/user.nix
+	../../modules/system/fonts.nix
 
 	# Feature flags (options)
 	../../modules/features.nix

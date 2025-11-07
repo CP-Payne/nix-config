@@ -3,9 +3,10 @@
 	# Note: No need to set home.username/directory, it defaults to user account
 
 	home.packages = with pkgs; [
-		ripgrep fd
+		ripgrep fd bat
 	];
-	
+
+
 
 	programs.git = {
 		enable = true;
