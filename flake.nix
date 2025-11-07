@@ -23,6 +23,20 @@
 	#modules = [ ./configuration.nix ];
 	modules = [ ./hosts/vm/configuration.nix ];
       }; 
+      laptop = nixpkgs.lib.nixosSystem {
+	inherit system;
+	specialArgs = {
+		inherit vars;
+	};
+	modules = [
+		home-manager.nixosModules.home-manager{
+			home-manager.useGlobalPkgs = true;
+			home-manager.useUserPackages = true;
+			home-manager.backupFileExtension = "backup";
+		}
+		./hosts/laptop
+	];
+	};
     };
   };
 }
