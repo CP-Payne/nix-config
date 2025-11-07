@@ -4,9 +4,9 @@
 	# Don't forget to set password with 'passwd'.
 	users.users.${vars.username} = {
 		isNormalUser = true;
-		extraGroups = [ "wheel" "networkmanager" ];
+		extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
 		description = vars.fullName;
-		shell = pkgs.zsh;
+		shell = pkgs.zsh; #if feature enabled
 	};
-	programs.zsh.enable = true;
+	#programs.zsh.enable = true;
 }
