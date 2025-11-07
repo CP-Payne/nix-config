@@ -16,13 +16,6 @@
   in {
     nixosConfigurations = {
       # usually start with host name
-      vm = nixpkgs.lib.nixosSystem {
-	specialArgs = {
-		inherit home-manager vars;
-	};
-	#modules = [ ./configuration.nix ];
-	modules = [ ./hosts/vm/configuration.nix ];
-      }; 
       laptop = nixpkgs.lib.nixosSystem {
 	inherit system;
 	specialArgs = {
