@@ -47,6 +47,7 @@
     tree
     wl-clipboard
     alejandra
+    file
   ];
 
   desktop.niri.enable = true;

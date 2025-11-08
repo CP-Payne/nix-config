@@ -9,6 +9,7 @@
 
       ../modules/apps/alacritty.nix
       ../modules/editors/neovim.nix
+      ../modules/editors/doom-emacs.nix
       ../modules/shell/zsh.nix
       #../dev/languages.nix
     ];
