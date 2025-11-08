@@ -1,37 +1,36 @@
-{ vars, pkgs,  ... }:
 {
+  vars,
+  pkgs,
+  ...
+}: {
+  home-manager.users.${vars.username} = {
+    imports = [
+      ../profiles/workstation.nix # universal Home Manager defualts
 
+      ../modules/apps/alacritty.nix
+      ../modules/editors/neovim.nix
+      ../modules/shell/zsh.nix
+      #../dev/languages.nix
+    ];
+    # home.username + home.homeDirectory default to signedin user
 
-	home-manager.users.${vars.username} = {
+    home.stateVersion = vars.stateVersion;
 
+    home.packages = with pkgs; [
+      bat
+    ];
 
-		imports = [
-			../profiles/workstation.nix # universal Home Manager defualts
+    programs.git = {
+      enable = true;
+      userName = vars.fullName;
+      userEmail = vars.email;
+    };
 
-			../modules/apps/alacritty.nix
-			../modules/editors/neovim.nix
-			../modules/shell/zsh.nix
-		];
-		# home.username + home.homeDirectory default to signedin user
+    # Flip HM toggles you want active for this user
+    hm.apps.alacritty.enable = true;
+    hm.editors.neovim.enable = true;
+    hm.shell.zsh.enable = true;
 
-		home.stateVersion = vars.stateVersion;
-
-		home.packages = with pkgs; [
-			bat
-		];
-
-		programs.git = {
-			enable = true;
-			userName = vars.fullName;
-			userEmail = vars.email;
-		};
-
-		# Flip HM toggles you want active for this user
-		hm.apps.alacritty.enable = true;
-		hm.editors.neovim.enable = true;
-		hm.shell.zsh.enable = true;
-
-		programs.home-manager.enable = true;
-	};
-
+    programs.home-manager.enable = true;
+  };
 }

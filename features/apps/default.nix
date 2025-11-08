@@ -1,8 +1,7 @@
-{ ... }:
-{
-	imports = [
-		./alacritty.nix
-		./browsers
-		./editors
-	];
+{...}: {
+  imports = [
+    ./alacritty.nix
+    ./browsers
+    ./editors
+  ];
 }
