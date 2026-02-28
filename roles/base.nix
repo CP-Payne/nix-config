@@ -9,6 +9,7 @@
     ../desktop/niri.nix
     ../desktop/hyprland.nix
     ../desktop/xfce.nix
+    ../desktop/plasma-x11.nix
     ../features/login/greetd.nix
 
     # System
