@@ -7,7 +7,7 @@
 in {
   options.desktop = {
     session.type = lib.mkOption {
-      type = lib.types.enum ["none" "niri" "hyprland" "xfce"];
+      type = lib.types.enum ["none" "niri" "hyprland" "xfce" "plasma-x11"];
       default = "none";
       description = "Desktop session to launch by default.";
     };
@@ -26,9 +26,10 @@ in {
             cfg.niri.enable
             cfg.hyprland.enable
             cfg.xfce.enable
+            cfg.plasmaX11.enable
           ]))
         <= 1;
-      message = "Enable at most one of desktop.niri.enable, desktop.hyprland.enable, or desktop.xfce.enable. Prefer desktop.session.type to choose the active desktop.";
+      message = "Enable at most one of desktop.niri.enable, desktop.hyprland.enable, desktop.xfce.enable, or desktop.plasmaX11.enable. Prefer desktop.session.type to choose the active desktop.";
     }
   ];
 }
