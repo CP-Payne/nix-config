@@ -5,29 +5,21 @@
   ...
 }: let
   cfg = config.desktop.niri;
+  isSelected = config.desktop.session.type == "niri";
 in {
-  options = {
-    desktop.niri.enable = lib.mkEnableOption "Enable Niri compositor";
+  options.desktop.niri.enable = lib.mkEnableOption "Enable Niri compositor";
 
-    # declare a session command so other modules (like greetd) can read it
-    desktop.session.cmd = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "Command to start the selected desktop session.";
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable || isSelected) {
     programs.niri.enable = true;
 
     xdg.portal = {
-	enable = true;
-	wlr.enable = true; # backend for Niri (wlroots)
-	extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; # generic dialogs
+      enable = true;
+      wlr.enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
+
     security.polkit.enable = true;
 
-
-    desktop.session.cmd = "Niri";
+    desktop.session.cmd = lib.mkDefault "${pkgs.dbus}/bin/dbus-run-session niri-session";
   };
 }

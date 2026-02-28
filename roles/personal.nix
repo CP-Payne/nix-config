@@ -3,7 +3,7 @@
     ./base.nix
   ];
 
-  desktop.niri.enable = true;
+  desktop.session.type = "niri";
   features.login.greetd.enable = true;
   features.ui.noctalia.enable = false;
 

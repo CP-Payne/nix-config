@@ -5,8 +5,10 @@
 }: {
   imports = [
     # Desktop/session modules
+    ../desktop/default.nix
     ../desktop/niri.nix
-    #../desktop/hyprland.nix
+    ../desktop/hyprland.nix
+    ../desktop/xfce.nix
     ../features/login/greetd.nix
 
     # System
