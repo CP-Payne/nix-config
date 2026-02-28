@@ -63,6 +63,11 @@
         role = "personal";
         modules = [./hosts/laptop];
       };
+      vm-play = {
+        device = "virtualbox";
+        role = "personal";
+        modules = [./hosts/virtualbox];
+      };
       # Example combos you can enable once those host dirs exist:
       # desktop = { device = "desktop-no-wifi"; role = "minimal"; modules = [ ./hosts/desktop ]; };
       # vm-lab = { device = "virtualbox"; role = "web-hacking"; modules = [ ./hosts/vm-lab ]; };

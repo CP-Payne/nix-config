@@ -6,7 +6,7 @@
   imports = [
     # Desktop/session modules
     ../desktop/niri.nix
-    ../desktop/hyprland.nix
+    #../desktop/hyprland.nix
     ../features/login/greetd.nix
 
     # System
