@@ -25,29 +25,57 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     vars = import ./vars.nix;
-  in {
-    nixosConfigurations = {
-      # usually start with host name
-      laptop = nixpkgs.lib.nixosSystem {
+    lib = nixpkgs.lib;
+
+    mkHost = {
+      hostname,
+      device,
+      role,
+      modules ? [],
+    }:
+      nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit vars;
           inherit inputs;
-	  inherit pkgs-unstable;
+          inherit pkgs-unstable;
         };
-        modules = [
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-          }
-          ./hosts/laptop
-        ];
+        modules =
+          [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+            }
+            ({...}: {networking.hostName = hostname;})
+            (./devices + "/${device}.nix")
+            (./roles + "/${role}.nix")
+          ]
+          ++ modules;
       };
+
+    hostDefinitions = {
+      laptop = {
+        device = "laptop";
+        role = "personal";
+        modules = [./hosts/laptop];
+      };
+      # Example combos you can enable once those host dirs exist:
+      # desktop = { device = "desktop-no-wifi"; role = "minimal"; modules = [ ./hosts/desktop ]; };
+      # vm-lab = { device = "virtualbox"; role = "web-hacking"; modules = [ ./hosts/vm-lab ]; };
     };
+  in {
+    nixosConfigurations = lib.mapAttrs (
+      hostname: cfg:
+        mkHost (
+          {
+            inherit hostname;
+          }
+          // cfg
+        )
+    ) hostDefinitions;
   };
 }

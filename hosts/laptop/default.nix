@@ -1,16 +1,9 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
-    # Harware Config
+    # Hardware stays host-specific, even with device layering.
     ./hardware-configuration.nix
-    # Roles
-    ../../roles/workstation.nix
-
-    # Host specific configurations
-    ../../features/services/bluetooth.nix
   ];
 
-  networking.hostName = "laptop";
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
+  # Host-specific overrides.
   features.services.bluetooth.enable = false;
 }
