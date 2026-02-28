@@ -6,4 +6,7 @@
 
   # Host-specific overrides.
   features.services.bluetooth.enable = false;
+
+  # VM-specific user profile additions.
+  profiles.user.extraGroups = ["vboxsf"];
 }
