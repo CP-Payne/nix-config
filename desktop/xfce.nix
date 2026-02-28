@@ -13,6 +13,10 @@ in {
     services.xserver.enable = true;
     services.xserver.desktopManager.xfce.enable = true;
 
-    desktop.session.cmd = lib.mkDefault "${pkgs.dbus}/bin/dbus-run-session startxfce4";
+    environment.systemPackages = [
+      pkgs.xorg.xinit
+    ];
+
+    desktop.session.cmd = lib.mkDefault "${pkgs.dbus}/bin/dbus-run-session ${pkgs.xfce.xfce4-session}/bin/startxfce4";
   };
 }
