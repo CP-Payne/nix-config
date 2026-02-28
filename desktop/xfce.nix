@@ -7,7 +7,8 @@
   cfg = config.desktop.xfce;
   isSelected = config.desktop.session.type == "xfce";
   xfceSession = "${pkgs.xfce.xfce4-session}/bin/startxfce4";
-  xfceSessionWithVBoxClient = "${pkgs.bash}/bin/bash -lc '${pkgs.virtualboxGuestAdditions}/bin/VBoxClient-all & exec ${xfceSession}'";
+  xfceSessionWithVBoxClient = "${pkgs.bash}/bin/bash -lc 'if command -v VBoxClient-all >/dev/null 2>&1; then VBoxClient-all & fi; exec ${xfceSession}'";
+
 in {
   options.desktop.xfce.enable = lib.mkEnableOption "Enable XFCE desktop";
 
