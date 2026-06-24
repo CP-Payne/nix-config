@@ -4,8 +4,15 @@
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
     symbola
-    fira-code
+    nerd-fonts.fira-code
+    cantarell-fonts
   ];
+
+environment.systemPackages = with pkgs; [
+  # ... your existing packages ...
+  aspell
+  aspellDicts.en
+];
 
   # User-level concerns via home-manager
   home-manager.users.charles = {
