@@ -22,7 +22,7 @@
   # Packages managed at the user level (empty for now, add here over time)
   home.packages = with pkgs; [
     wezterm
-    ghostty
+    #ghostty
     obsidian
 
     # Python
