@@ -6,6 +6,8 @@
     symbola
     nerd-fonts.fira-code
     cantarell-fonts
+    jetbrains-mono
+    overpass
   ];
 
 environment.systemPackages = with pkgs; [

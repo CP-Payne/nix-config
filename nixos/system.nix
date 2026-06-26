@@ -9,18 +9,17 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_ZA.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "za";
     variant = "";
   };
+
+
+  # Enable X11 and GNOME
+  services.xserver.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
